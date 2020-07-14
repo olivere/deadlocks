@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  mysql:
+    image: mysql:5.7
+    environment:
+      # - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_ALLOW_EMPTY_PASSWORD=true
+      - MYSQL_DATABASE=deadlocks
+    ports:
+      - 3306:3306
+    volumes:
+      - ./etc/mysql/:/docker-entrypoint-initdb.d
+  postgres:
+    image: postgres:12.3
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin
+      # - POSTGRES_DB=deadlocks
+    ports:
+      - 5432:5432
+    volumes:
+      - ./etc/postgres/:/docker-entrypoint-initdb.d
